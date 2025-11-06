@@ -21,5 +21,27 @@ fun DataApp(
     nayController: NavHostController = rememberNavController(),
     modifier: Modifier
 ){
+    Scaffold { isiRuang->
+        NavHost(
+            navController = navController,
+            startDestination = Navigasi.FormulirKu.name,
 
+            modifier = Modifier.padding(paddingValues = isiRuang)){
+            composable(route = Navigasi.Formulirku.name){
+                FormIsian (
+                    OnSubmitBtnClick = {
+                        nayController.navigate(route = Navigasi.Detail.name)
+                    }
+                )
+            }
+            composable(route = Navigasi.Detail.name){
+                TampilData (
+                    onBackBtnClick = {
+                        cancelAndBackToFormulirKu(navController)
+                    }
+                )
+            }
+        }
+    }
 }
+
